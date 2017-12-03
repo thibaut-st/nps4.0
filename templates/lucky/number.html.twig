@@ -1,1 +1,8 @@
-<h1>Your lucky number is {{ number }}</h1>
+{# templates/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Lucky{% endblock %}
+
+{% block body %}
+    <p>Number: {{ number }}</p>
+{% endblock %}
