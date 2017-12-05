@@ -65,7 +65,7 @@ class WishList
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -81,7 +81,7 @@ class WishList
     /**
      * @return Occasion
      */
-    public function getOccasion()
+    public function getOccasion(): ?object
     {
         return $this->occasion;
     }
@@ -113,5 +113,10 @@ class WishList
     public function addItem(Item $item)
     {
         $this->items[] = $item;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

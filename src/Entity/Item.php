@@ -61,7 +61,7 @@ class Item
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -77,7 +77,7 @@ class Item
     /**
      * @return string
      */
-    public function getLink(): string
+    public function getLink(): ?string
     {
         return $this->link;
     }
@@ -93,7 +93,7 @@ class Item
     /**
      * @return ItemType
      */
-    public function getItemType(): ItemType
+    public function getItemType(): ?ItemType
     {
         return $this->itemType;
     }
@@ -109,7 +109,7 @@ class Item
     /**
      * @return WishList
      */
-    public function getWishList(): WishList
+    public function getWishList(): ?WishList
     {
         return $this->wishList;
     }
@@ -122,5 +122,8 @@ class Item
         $this->wishList = $wishList;
     }
 
-
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

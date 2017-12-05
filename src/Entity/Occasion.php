@@ -48,7 +48,7 @@ class Occasion
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -75,5 +75,10 @@ class Occasion
     public function setWishLists($wishLists): void
     {
         $this->wishLists = $wishLists;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

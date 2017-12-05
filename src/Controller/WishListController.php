@@ -11,6 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class WishListController extends AbstractController
 {
+    /**
+     * @Route("/", name="wish_list_index")
+     */
+    public function index(){
+        return $this->redirectToRoute('wish_list_list');
+    }
+
 
     /**
      * @Route("/wishlist/list", name="wish_list_list")

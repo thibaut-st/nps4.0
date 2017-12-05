@@ -4,8 +4,31 @@
     {% if wishLists == null %}
         <p>No list</p>
     {% else %}
-        {% for wishList in wishLists %}
-            {{ wishList.name }}
-        {% endfor %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Occasion</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for wishList in wishLists %}
+                    <tr>
+                        <td scope="row">
+                            {{ loop.index }}
+                        </td>
+                        <td>
+                            {{ wishList.name }}
+                        </td>
+                        <td>
+                            {{ wishList.occasion }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endif %}
 {% endblock %}
