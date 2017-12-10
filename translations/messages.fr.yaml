@@ -1,0 +1,32 @@
+#menu
+menu.wishlist: Listes de souhait
+menu.list.list: Mes listes
+menu.list.create: Nouvelle liste
+
+menu.admin: Administration
+
+#wish_list_list
+list.title: Toutes mes listes de souhait
+list.index: N°
+list.name: Nom
+list.occasion: Occasion
+list.action: Actions
+list.show: Afficher
+list.edit: Modifier
+list.delete: Supprimer
+list.create: Créer
+list.create.success: Nouvelle liste crée avec succès !
+list.edit.success: Liste éditée avec succès !
+list.delete.success: Liste supprimée avec succès !
+
+#swal
+delete.title: Suppression
+delete.text: Etes-vous sur de vouloir supprimer ?
+
+#helper
+yes: oui
+no: non
+success: Succès
+warning: Attention
+danger: Danger
+info: Information

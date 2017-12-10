@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    <h1>{% trans %}list.title{% endtrans %} <a class="btn btn-primary" href="{{ path('wish_list_create') }}">{% trans %}list.create{% endtrans %}</a></h1>
+
     {% if wishLists == null %}
         <p>No list</p>
     {% else %}
         <div class="table-responsive">
-            <table class="table">
+            <table id="wishlist-table" class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Index</th>
-                    <th>Name</th>
-                    <th>Occasion</th>
+                    <th>{% trans %}list.index{% endtrans %}</th>
+                    <th>{% trans %}list.name{% endtrans %}</th>
+                    <th>{% trans %}list.occasion{% endtrans %}</th>
+                    <th>{% trans %}list.action{% endtrans %}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,10 +29,44 @@
                         <td>
                             {{ wishList.occasion }}
                         </td>
+                        <td>
+                            <a class="btn btn-info"
+                               href="{{ path('wish_list_show', {'id': wishList.id}) }}">{% trans %}list.show{% endtrans %}</a>
+                            <a class="btn btn-warning"
+                               href="{{ path('wish_list_edit', {'id': wishList.id}) }}">{% trans %}list.edit{% endtrans %}</a>
+                            <a class="btn btn-danger delete-item"
+                               href="{{ path('wish_list_delete', {'id': wishList.id}) }}">{% trans %}list.delete{% endtrans %}</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#wishlist-table').DataTable();
+        });
+
+        $('.delete-item').click(function (e) {
+            e.preventDefault();
+            let link = $(this).attr('href');
+
+            swal({
+                title: "{% trans %}delete.title{% endtrans %}",
+                text: "{% trans %}delete.text{% endtrans %}",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = link;
+                }
+            });
+        });
+    </script>
 {% endblock %}

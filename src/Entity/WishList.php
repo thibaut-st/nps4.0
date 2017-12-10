@@ -33,7 +33,7 @@ class WishList
 
     /**
      * @var Item[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="App\Entity\Item", mappedBy="wishList")
+     * @ORM\OneToMany(targetEntity="App\Entity\Item", mappedBy="wishList", orphanRemoval=true)
      */
     private $items;
 

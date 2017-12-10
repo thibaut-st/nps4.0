@@ -5,5 +5,15 @@
         {{ wishlist }}
     </h3>
     <div><p>{{ wishlist.occasion }}</p></div>
+    <div>
+        {% for item in wishlist.items %}
+            {{ item.name }}
+        {% endfor %}
+    </div>
+
+    <div>
+        <a class="btn btn-cancel" href="{{ path('wish_list_list') }}">Retour</a>
+        <a class="btn btn-warning" href="{{ path('wish_list_edit', {'id':wishlist.id}) }}">edit</a>
+    </div>
 {% endblock %}
 

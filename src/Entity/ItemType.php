@@ -77,5 +77,9 @@ class ItemType
         $this->items = $items;
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
 
 }

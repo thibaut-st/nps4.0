@@ -1,0 +1,33 @@
+#menu
+menu.wishlist: Wishlist
+menu.list.list: My lists
+menu.list.create: New list
+
+menu.admin: Admin
+
+#wish_list_list
+list.list: list
+list.title: All my wishlists
+list.index: "#"
+list.name: Name
+list.occasion: Occasion
+list.action: Actions
+list.show: Show
+list.edit: Edit
+list.delete: Delete
+list.create: Create
+list.create.success: New list successfully created !
+list.edit.success: List successfully edited !
+list.delete.success: List successfully deleted !
+
+#swal
+delete.title: Delete
+delete.text: Are you sure you want to delete ?
+
+#helper
+yes: yes
+no: no
+success: Success
+warning: Attention
+danger: Danger
+info: Information
