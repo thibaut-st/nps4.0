@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{ path('wish_list_list') }}">NSP4</a>
+    <a class="navbar-brand" href="{{ path('wishlist_list') }}">NSP4</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -7,16 +7,16 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown {{ active(['wish_list_list','wish_list_create']) }}">
+            <li class="nav-item dropdown {{ active(['wishlist_list','wishlist_create']) }}">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {% trans %}menu.wishlist{% endtrans %}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item {{ active('wish_list_list') }}"
-                       href="{{ path('wish_list_list') }}">{% trans %}menu.list.list{% endtrans %}</a>
-                    <a class="dropdown-item {{ active('wish_list_create') }}"
-                       href="{{ path('wish_list_create') }}">{% trans %}menu.list.create{% endtrans %}</a>
+                    <a class="dropdown-item {{ active('wishlist_list') }}"
+                       href="{{ path('wishlist_list') }}">{% trans %}menu.list.list{% endtrans %}</a>
+                    <a class="dropdown-item {{ active('wishlist_create') }}"
+                       href="{{ path('wishlist_create') }}">{% trans %}menu.list.create{% endtrans %}</a>
                 </div>
             </li>
             <li class="nav-item {{ active('admin') }}">

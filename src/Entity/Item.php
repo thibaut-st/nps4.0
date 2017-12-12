@@ -30,14 +30,14 @@ class Item
 
     /**
      * @var ItemType
-     * @ORM\ManyToOne(targetEntity="App\Entity\ItemType", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="ItemType", inversedBy="items")
      * @ORM\JoinColumn(name="itemType_id", referencedColumnName="id")
      */
     private $itemType;
 
     /**
      * @var WishList
-     * @ORM\ManyToOne(targetEntity="App\Entity\WishList", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="WishList", inversedBy="items")
      * @ORM\JoinColumn(name="wishList_id", referencedColumnName="id")
      */
     private $wishList;

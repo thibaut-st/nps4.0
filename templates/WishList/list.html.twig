@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <h1>{% trans %}list.title{% endtrans %} <a class="btn btn-primary" href="{{ path('wish_list_create') }}">{% trans %}list.create{% endtrans %}</a></h1>
+    <h1>{% trans %}list.title{% endtrans %} <a class="btn btn-primary" href="{{ path('wishlist_create') }}">{% trans %}list.create{% endtrans %}</a></h1>
 
     {% if wishLists == null %}
         <p>No list</p>
@@ -31,11 +31,11 @@
                         </td>
                         <td>
                             <a class="btn btn-info"
-                               href="{{ path('wish_list_show', {'id': wishList.id}) }}">{% trans %}list.show{% endtrans %}</a>
+                               href="{{ path('wishlist_show', {'id': wishList.id}) }}">{% trans %}list.show{% endtrans %}</a>
                             <a class="btn btn-warning"
-                               href="{{ path('wish_list_edit', {'id': wishList.id}) }}">{% trans %}list.edit{% endtrans %}</a>
+                               href="{{ path('wishlist_edit', {'id': wishList.id}) }}">{% trans %}list.edit{% endtrans %}</a>
                             <a class="btn btn-danger delete-item"
-                               href="{{ path('wish_list_delete', {'id': wishList.id}) }}">{% trans %}list.delete{% endtrans %}</a>
+                               href="{{ path('wishlist_delete', {'id': wishList.id}) }}">{% trans %}list.delete{% endtrans %}</a>
                         </td>
                     </tr>
                 {% endfor %}

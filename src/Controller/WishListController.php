@@ -12,21 +12,21 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Class WishListController
  * @package App\Controller
- * @Route("/{_locale}", defaults={"_locale"="%locale%"}, requirements={"_locale" = "%app.locales%"})
+ * @Route("/wishlist", name="wishlist_")
  */
 class WishListController extends AbstractController
 {
     /**
-     * @Route("/", name="wish_list_index")
+     * @Route("/", name="index")
      */
     public function index()
     {
-        return $this->redirectToRoute('wish_list_list');
+        return $this->redirectToRoute('wishlist_list');
     }
 
 
     /**
-     * @Route("/wishlist/list", name="wish_list_list")
+     * @Route("/list", name="list")
      */
     public function showList()
     {
@@ -39,7 +39,7 @@ class WishListController extends AbstractController
     }
 
     /**
-     * @Route("/wishlist/show/{id}", name="wish_list_show", requirements={"id":"\d+"})
+     * @Route("/show/{id}", name="show", requirements={"id":"\d+"})
      * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -55,7 +55,7 @@ class WishListController extends AbstractController
 
 
     /**
-     * @Route("/wishlist/create", name="wish_list_create")
+     * @Route("/create", name="create")
      * @param Request $request
      * @param TranslatorInterface $translator
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -76,7 +76,7 @@ class WishListController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', $translator->trans('list.create.success'));
-            return $this->redirectToRoute('wish_list_show', array('id' => $wishList->getId()));
+            return $this->redirectToRoute('wishlist_show', array('id' => $wishList->getId()));
         }
 
         return $this->render('WishList/modify.html.twig', array(
@@ -85,7 +85,7 @@ class WishListController extends AbstractController
     }
 
     /**
-     * @Route("/wishlist/edit/{id}", name="wish_list_edit")
+     * @Route("/edit/{id}", name="edit")
      * @param Request $request
      * @param TranslatorInterface $translator
      * @param WishList $wishList
@@ -105,7 +105,7 @@ class WishListController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', $translator->trans('list.edit.success'));
-            return $this->redirectToRoute('wish_list_show', array('id' => $wishList->getId()));
+            return $this->redirectToRoute('wishlist_show', array('id' => $wishList->getId()));
         }
 
         return $this->render('WishList/modify.html.twig', array(
@@ -114,7 +114,7 @@ class WishListController extends AbstractController
     }
 
     /**
-     * @Route("/wishlist/delete/{id}", name="wish_list_delete")
+     * @Route("/delete/{id}", name="delete")
      * @param WishList $wishList
      * @param TranslatorInterface $translator
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -125,6 +125,6 @@ class WishListController extends AbstractController
         $em->remove($wishList);
         $em->flush();
         $this->addFlash('success', $translator->trans('list.delete.success'));
-        return $this->redirectToRoute('wish_list_list');
+        return $this->redirectToRoute('wishlist_list');
     }
 }

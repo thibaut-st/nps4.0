@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,14 +27,14 @@ class WishList
 
     /**
      * @var Occasion
-     * @ORM\ManyToOne(targetEntity="App\Entity\Occasion", inversedBy="wishLists")
+     * @ORM\ManyToOne(targetEntity="Occasion", inversedBy="wishLists")
      * @ORM\JoinColumn(name="occasion_id", referencedColumnName="id")
      */
     private $occasion;
 
     /**
      * @var Item[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="App\Entity\Item", mappedBy="wishList", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Item", mappedBy="wishList", orphanRemoval=true)
      */
     private $items;
 
@@ -41,9 +42,9 @@ class WishList
      * WishList constructor.
      * @param Item[]|ArrayCollection $items
      */
-    public function __construct($items = array())
+    public function __construct()
     {
-        $this->items = $items;
+        $this->items = new ArrayCollection();
     }
 
     /**
@@ -94,28 +95,46 @@ class WishList
         $this->occasion = $occasion;
     }
 
-    /**
-     * @return Item[]|ArrayCollection
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
+	/**
+	 * @return Collection
+	 */
+	public function getItems(): Collection
+	{
+		return $this->items;
+	}
 
-    /**
-     * @param Item[]|ArrayCollection $items
-     */
-    public function setItems($items): void
-    {
-        $this->items = $items;
-    }
+	/**
+	 * @param Item[]|ArrayCollection $items
+	 */
+	public function setItems($items): void
+	{
+		$this->items = $items;
+	}
 
-    public function addItem(Item $item)
-    {
-        $this->items[] = $item;
-    }
+	/**
+	 * @param Item $item
+	 */
+	public function addItem(Item $item): void
+	{
+		$item->setWishList($this);
+		if (!$this->items->contains($item)) {
+			$this->items->add($item);
+		}
+	}
 
-    public function __toString()
+	/**
+	 * @param Item $item
+	 */
+	public function removeComment(Item $item): void
+	{
+		$item->setWishList(null);
+		$this->items->removeElement($item);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function __toString(): string
     {
         return $this->name;
     }
