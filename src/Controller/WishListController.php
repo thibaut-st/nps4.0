@@ -16,6 +16,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class WishListController extends AbstractController
 {
+
     /**
      * @Route("/", name="index")
      */
@@ -23,7 +24,6 @@ class WishListController extends AbstractController
     {
         return $this->redirectToRoute('wishlist_list');
     }
-
 
     /**
      * @Route("/list", name="list")
@@ -47,12 +47,10 @@ class WishListController extends AbstractController
     {
         $wishList = $this->getDoctrine()->getRepository(WishList::class)->find($id);
 
-
         return $this->render('WishList/show.html.twig', array(
             'wishlist' => $wishList,
         ));
     }
-
 
     /**
      * @Route("/create", name="create")
@@ -79,7 +77,7 @@ class WishListController extends AbstractController
             return $this->redirectToRoute('wishlist_show', array('id' => $wishList->getId()));
         }
 
-        return $this->render('WishList/modify.html.twig', array(
+        return $this->render('WishList/create.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -108,7 +106,8 @@ class WishListController extends AbstractController
             return $this->redirectToRoute('wishlist_show', array('id' => $wishList->getId()));
         }
 
-        return $this->render('WishList/modify.html.twig', array(
+        return $this->render('WishList/edit.html.twig', array(
+            'id' => $wishList->getId(),
             'form' => $form->createView(),
         ));
     }

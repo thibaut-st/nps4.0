@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{% trans %}list.title.create{% endtrans %}</h1>
+    <hr>
+    <div class="row">
+        <div class="col-lg-4">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <a class="btn btn-cancel" href={{ path('wishlist_list') }}>{% trans %}cancel{% endtrans %}</a>
+            <button type="submit" class="btn btn-success">{% trans %}create{% endtrans %}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+

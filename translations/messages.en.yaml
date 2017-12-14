@@ -5,20 +5,25 @@ menu.list.create: New list
 
 menu.admin: Admin
 
-#wish_list_list
+#wishlist
 list.list: list
-list.title: All my wishlists
-list.index: "#"
+list.title.list: All my wishlists
+list.title.edit: Edit my wishlist
+list.title.create: New wishlist
 list.name: Name
 list.occasion: Occasion
-list.action: Actions
-list.show: Show
-list.edit: Edit
-list.delete: Delete
-list.create: Create
 list.create.success: New list successfully created !
 list.edit.success: List successfully edited !
 list.delete.success: List successfully deleted !
+list.occasion.option: -- Select an occasion --
+
+#item
+items: Items
+item: Item
+item.name: Name
+item.link: Link
+item.type: Item type
+
 
 #swal
 delete.title: Delete
@@ -27,7 +32,18 @@ delete.text: Are you sure you want to delete ?
 #helper
 yes: yes
 no: no
+action: Actions
 success: Success
 warning: Attention
 danger: Danger
 info: Information
+index: #
+add: Add
+save: Save
+show: Show
+create: Save
+edit: Edit
+delete: Delete
+return: Go back
+validate: OK
+cancel: Cancel

@@ -2,19 +2,23 @@
 
 {% block body %}
 
-    <h1>{% trans %}list.title{% endtrans %} <a class="btn btn-primary" href="{{ path('wishlist_create') }}">{% trans %}list.create{% endtrans %}</a></h1>
+    <h1>{% trans %}list.title.list{% endtrans %} <a class="btn btn-success"
+                                                    href="{{ path('wishlist_create') }}">{% trans %}add{% endtrans %}</a>
+    </h1>
+
+    <hr>
 
     {% if wishLists == null %}
         <p>No list</p>
     {% else %}
         <div class="table-responsive">
-            <table id="wishlist-table" class="table table-hover">
+            <table id="datatable-table" class="table table-hover">
                 <thead>
                 <tr>
-                    <th>{% trans %}list.index{% endtrans %}</th>
+                    <th>{% trans %}index{% endtrans %}</th>
                     <th>{% trans %}list.name{% endtrans %}</th>
                     <th>{% trans %}list.occasion{% endtrans %}</th>
-                    <th>{% trans %}list.action{% endtrans %}</th>
+                    <th>{% trans %}action{% endtrans %}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,11 +35,11 @@
                         </td>
                         <td>
                             <a class="btn btn-info"
-                               href="{{ path('wishlist_show', {'id': wishList.id}) }}">{% trans %}list.show{% endtrans %}</a>
+                               href="{{ path('wishlist_show', {'id': wishList.id}) }}">{% trans %}show{% endtrans %}</a>
                             <a class="btn btn-warning"
-                               href="{{ path('wishlist_edit', {'id': wishList.id}) }}">{% trans %}list.edit{% endtrans %}</a>
+                               href="{{ path('wishlist_edit', {'id': wishList.id}) }}">{% trans %}edit{% endtrans %}</a>
                             <a class="btn btn-danger delete-item"
-                               href="{{ path('wishlist_delete', {'id': wishList.id}) }}">{% trans %}list.delete{% endtrans %}</a>
+                               href="{{ path('wishlist_delete', {'id': wishList.id}) }}">{% trans %}delete{% endtrans %}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -47,11 +51,8 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('build/js/my-datatable.js') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#wishlist-table').DataTable();
-        });
-
         $('.delete-item').click(function (e) {
             e.preventDefault();
             let link = $(this).attr('href');
@@ -60,7 +61,22 @@
                 title: "{% trans %}delete.title{% endtrans %}",
                 text: "{% trans %}delete.text{% endtrans %}",
                 icon: "warning",
-                buttons: true,
+                buttons: {
+                    cancel: {
+                        text: "{% trans %}cancel{% endtrans %}",
+                        value: null,
+                        visible: true,
+                        className: "btn btn-danger",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "{% trans %}validate{% endtrans %}",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-success",
+                        closeModal: true
+                    }
+                },
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {

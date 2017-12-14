@@ -1,19 +1,102 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h3>
-        {{ wishlist }}
-    </h3>
-    <div><p>{{ wishlist.occasion }}</p></div>
-    <div>
-        {% for item in wishlist.items %}
-            {{ item.name }}
-        {% endfor %}
+    <h1>
+        {{ wishlist }} <a class="btn btn-warning"
+                          href="{{ path('wishlist_edit', {'id':wishlist.id}) }}">{% trans %}edit{% endtrans %}</a>
+    </h1>
+    <hr>
+    <div class="row">
+        <div class="col-lg-2"><b>{% trans %}list.occasion{% endtrans %}</b></div>
+        <div class="col-lg-4">{{ wishlist.occasion }}</div>
     </div>
+    <br>
+    <h2>
+        {% trans %}items{% endtrans %} <a class="btn btn-success" href="#">{% trans %}add{% endtrans %}</a>
+    </h2>
+    <hr>
+    {% if wishlist.items is empty %}
+        <p>No items</p>
+    {% else %}
+        <div class="table-responsive">
+            <table id="datatable-table" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{% trans %}index{% endtrans %}</th>
+                    <th>{% trans %}item.name{% endtrans %}</th>
+                    <th>{% trans %}item.link{% endtrans %}</th>
+                    <th>{% trans %}item.type{% endtrans %}</th>
+                    <th>{% trans %}action{% endtrans %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in wishlist.items %}
+                    <tr>
+                        <td scope="row">
+                            {{ loop.index }}
+                        </td>
+                        <td>
+                            {{ item.name }}
+                        </td>
+                        <td>
+                            {{ item.link }}
+                        </td>
+                        <td>
+                            {{ item.itemType }}
+                        </td>
+                        <td>
+                            <a class="btn btn-warning"
+                               href="#">{% trans %}edit{% endtrans %}</a>
+                            <a class="btn btn-danger delete-item"
+                               href="#">{% trans %}delete{% endtrans %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 
     <div>
         <a class="btn btn-cancel" href="{{ path('wishlist_list') }}">Retour</a>
-        <a class="btn btn-warning" href="{{ path('wishlist_edit', {'id':wishlist.id}) }}">edit</a>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/my-datatable.js') }}"></script>
+    <script type="text/javascript">
+        $('.delete-item').click(function (e) {
+            e.preventDefault();
+            let link = $(this).attr('href');
+
+            swal({
+                title: "{% trans %}delete.title{% endtrans %}",
+                text: "{% trans %}delete.text{% endtrans %}",
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "{% trans %}cancel{% endtrans %}",
+                        value: null,
+                        visible: true,
+                        className: "btn btn-danger",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "{% trans %}validate{% endtrans %}",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-success",
+                        closeModal: true
+                    }
+                },
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = link;
+                }
+            });
+        });
+    </script>
 {% endblock %}
 

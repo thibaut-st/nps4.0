@@ -6,18 +6,23 @@ menu.list.create: Nouvelle liste
 menu.admin: Administration
 
 #wish_list_list
-list.title: Toutes mes listes de souhait
-list.index: N°
+list.list: liste
+list.title.list: Mes listes de souhaits
+list.title.edit: Éditer ma liste de souhaits
+list.title.create: Nouvelle liste de souhaits
 list.name: Nom
 list.occasion: Occasion
-list.action: Actions
-list.show: Afficher
-list.edit: Modifier
-list.delete: Supprimer
-list.create: Créer
 list.create.success: Nouvelle liste crée avec succès !
 list.edit.success: Liste éditée avec succès !
 list.delete.success: Liste supprimée avec succès !
+list.occasion.option: -- Selectionner une occasion --
+
+#item
+items: Éléments
+item: Élément
+item.name: Nom
+item.link: Lien
+item.type: Type de l'élément
 
 #swal
 delete.title: Suppression
@@ -26,7 +31,18 @@ delete.text: Etes-vous sur de vouloir supprimer ?
 #helper
 yes: oui
 no: non
+action: Actions
 success: Succès
 warning: Attention
 danger: Danger
 info: Information
+index: N°
+add: Ajouter
+save: Enregistrer
+show: Afficher
+create: Créer
+edit: Modifier
+delete: Supprimer
+return: Retour
+validate: OK
+cancel: Annuler

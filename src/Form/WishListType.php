@@ -19,8 +19,8 @@ class WishListType extends AbstractType
             ->add('occasion', EntityType::class, array(
                 'class' => Occasion::class,
                 'choice_label' => 'name',
-            ))
-            ->add('save', SubmitType::class);
+				'placeholder' => 'list.occasion.option',
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
