@@ -37,7 +37,7 @@ success: Success
 warning: Attention
 danger: Danger
 info: Information
-index: #
+index: '#'
 add: Add
 save: Save
 show: Show

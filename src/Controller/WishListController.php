@@ -13,6 +13,8 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class WishListController
  * @package App\Controller
  * @Route("/wishlist", name="wishlist_")
+ *
+ * @see Route
  */
 class WishListController extends AbstractController
 {

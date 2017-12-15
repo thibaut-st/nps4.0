@@ -2,7 +2,7 @@
 #    path: /
 #    defaults: { _controller: 'App\Controller\DefaultController::index' }
 
-homepage:
+index:
     path: /{_locale}
     controller: App\Controller\WishListController::index
     requirements:

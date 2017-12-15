@@ -34,7 +34,7 @@ class WishList
 
     /**
      * @var Item[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="Item", mappedBy="wishList", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Item", mappedBy="wishList", orphanRemoval=true, cascade={"persist"})
      */
     private $items;
 
@@ -108,7 +108,10 @@ class WishList
 	 */
 	public function setItems($items): void
 	{
-		$this->items = $items;
+	    foreach ($items as $item){
+	        $item->setWishList($this);
+        }
+        $this->items = $items;
 	}
 
 	/**
@@ -125,7 +128,7 @@ class WishList
 	/**
 	 * @param Item $item
 	 */
-	public function removeComment(Item $item): void
+	public function removeItem(Item $item): void
 	{
 		$item->setWishList(null);
 		$this->items->removeElement($item);
