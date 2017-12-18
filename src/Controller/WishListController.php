@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\WishList;
 use App\Form\WishListType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,12 +96,25 @@ class WishListController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
+        $originalItems = new ArrayCollection();
+        foreach ($wishList->getItems() as $item) {
+            $originalItems->add($item);
+        }
+
         $form = $this->createForm(WishListType::class, $wishList);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $wishList = $form->getData();
+
+            //delete removed items
+            foreach ($originalItems as $item) {
+                if ($wishList->getItems()->contains($item) === false) {
+                    $em->remove($item);
+                }
+            }
+
             $em->persist($wishList);
             $em->flush();
 

@@ -1,7 +1,7 @@
 let $collectionHolder;
 
 // setup an "add a item" link
-let $addTagLink = $('<button type="button" class="float-right btn btn-sm btn-info add_item_link">Add a item</a>');
+let $addTagLink = $('<hr><button type="button" class="float-right btn btn-sm btn-info add_item_link"><i class="fa fa-plus" aria-hidden="true"></i></a>');
 let $newLinkLi = $('<div></div>').append($addTagLink);
 
 jQuery(document).ready(function () {
@@ -21,6 +21,10 @@ jQuery(document).ready(function () {
 
         // add a new item form (see next code block)
         addTagForm($collectionHolder, $newLinkLi);
+    });
+
+    $collectionHolder.find("div[id^='wish_list_items_']").each(function () {
+        addTagFormDeleteLink($(this));
     });
 });
 
@@ -45,4 +49,17 @@ function addTagForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
 
     $newLinkLi.before(newForm);
+
+    // add a delete link to the new form
+    addTagFormDeleteLink($newLinkLi.prev().find("div[id^='wish_list_items_']"));
+}
+
+function addTagFormDeleteLink($tagFormLi) {
+    let $removeFormA = $('<button type="button" class="float-right btn btn-sm btn-danger add_item_link"><i class="fa fa-trash" aria-hidden="true"></i></a>');
+    $tagFormLi.prepend($removeFormA);
+
+    $removeFormA.on('click', function (e) {
+        // remove the li for the tag form
+        $tagFormLi.remove();
+    });
 }

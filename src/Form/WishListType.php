@@ -26,6 +26,7 @@ class WishListType extends AbstractType
                 'entry_type' => ItemType::class,
                 'entry_options' => array('label' => false),
                 'allow_add' => true,
+                'allow_delete' => true,
                 'by_reference' => false,
             ));
     }

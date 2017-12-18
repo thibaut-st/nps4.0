@@ -130,7 +130,6 @@ class WishList
 	 */
 	public function removeItem(Item $item): void
 	{
-		$item->setWishList(null);
 		$this->items->removeElement($item);
 	}
 
